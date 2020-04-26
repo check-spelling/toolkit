@@ -1,0 +1,5 @@
+(?:0[Xx]|U\+|#)[a-f0-9A-FGgRr]{2,}[Uu]?[Ll]{0,2}\b
+%0[A-F]
+sEARCH
+Wor\*\*\*\*d
+https://github.com/\S+
