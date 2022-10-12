@@ -2,6 +2,7 @@ import {issue, issueCommand} from './command'
 import {issueCommand as issueFileCommand} from './file-command'
 import {toCommandProperties, toCommandValue} from './utils'
 
+import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
 
@@ -190,6 +191,7 @@ export function getBooleanInput(name: string, options?: InputOptions): boolean {
 export function setOutput(name: string, value: any): void {
   process.stdout.write(os.EOL)
   issueCommand('set-output', {name}, value)
+  fs.appendFileSync(process.env['GITHUB_OUTPUT'] || '', `{name}={value}`)
 }
 
 /**

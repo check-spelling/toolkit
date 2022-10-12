@@ -9,10 +9,10 @@ your commands. The following commands are all supported:
 
 ### Set outputs
 
-To set an output for the step, use `::set-output`:
+To set an output for the step, append to `$GITHUB_OUTPUT`:
 
 ```sh
-echo "::set-output name=FOO::BAR"
+echo "FOO=BAR" >> "$GITHUB_OUTPUT"
 ```
 
 Running `steps.[step-id].outputs.FOO` in your Yaml will now give you `BAR`
@@ -21,7 +21,7 @@ Running `steps.[step-id].outputs.FOO` in your Yaml will now give you `BAR`
 steps:
   - name: Set the value
     id: step_one
-    run: echo "::set-output name=FOO::BAR"
+    run: echo "FOO=BAR" >> "$GITHUB_OUTPUT"
   - name: Use it
     run: echo ${{ steps.step_one.outputs.FOO }}
 ```
@@ -132,7 +132,7 @@ The `add-mask`, `debug`, `warning` and `error` commands do not support echoing.
 CMD processes the `"` character differently from other shells when echoing. In CMD, the above snippets should have the `"` characters removed in order to correctly process. For example, the set output command would be:
 
 ```cmd
-echo ::set-output name=FOO::BAR
+echo FOO::BAR >> %GITHUB_OUTPUT%
 ```
 
 ## Environment files
